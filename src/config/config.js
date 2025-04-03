@@ -17,6 +17,8 @@ sessionStore.on("error", function (error) {
 });
 
 export async function authenticate(email, password) {
+  //FOR First time sign in and make an amdin from dashboard
+
   //   if (email && password) {
   //     if (email === "admin@namandoshi.in" && password === "admin") {
   //       return Promise.resolve({ email: email, password: password });
@@ -25,6 +27,7 @@ export async function authenticate(email, password) {
   //     }
   //   }
 
+  //Once you have made the admin from dashboard
   if (email && password) {
     const user = await Admin.findOne({ email });
     if (!user) {
