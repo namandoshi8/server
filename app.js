@@ -4,6 +4,7 @@ import { PORT } from "./src/config/config.js";
 import fastify from "fastify";
 import fastifySocketIO from "fastify-socket.io";
 import { registerRoutes } from "./src/routes/index.js";
+import { admin, buildAdminRouter } from "./src/config/setup.js";
 // import fastifyStatic from "fastify-static";
 // import path from "path";
 // import { fileURLToPath } from "url";
@@ -22,6 +23,8 @@ async function start() {
 
   await registerRoutes(app);
 
+  await buildAdminRouter(app);
+
   app.listen(
     {
       port: PORT,
@@ -33,7 +36,7 @@ async function start() {
         // process.exit(1);
       }
       console.log(
-        `Server listening at ${address} or https://localhost:${PORT}`
+        `Server listening at ${address} or http://localhost:${PORT}${admin.options.rootPath}`
       );
     }
   );
